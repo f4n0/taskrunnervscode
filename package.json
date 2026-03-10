@@ -1,6 +1,6 @@
 {
     "name": "taskrunnervscode",
-    "displayName": "Task Runner",
+    "displayName": "Task Runner 2.0",
     "description": "VS Code extension to view and run tasks from Explorer pane",
     "icon": "check.png",
     "version": "1.0.0",
