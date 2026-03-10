@@ -1,13 +1,13 @@
 {
-    "name": "taskrunnercode",
+    "name": "taskrunnervscode",
     "displayName": "Task Runner",
     "description": "VS Code extension to view and run tasks from Explorer pane",
     "icon": "check.png",
-    "version": "0.2.0",
-    "publisher": "SanaAjani",
+    "version": "1.0.0",
+    "publisher": "f4n0",
     "repository": {
         "type": "git",
-        "url": "https://github.com/sana-ajani/taskrunner-code.git"
+        "url": "https://github.com/f4n0/taskrunner-code.git"
     },
     "engines": {
         "vscode": "^1.26.0"
@@ -24,25 +24,28 @@
         "color": "#d7ede1"
     },
     "activationEvents": [
-        "*"
+        "onView:taskrunnervscode",
+        "onCommand:taskrunnervscode.refresh",
+        "onCommand:taskrunnervscode.executeTask"
     ],
     "main": "./out/extension",
     "contributes": {
         "views": {
             "explorer": [
                 {
-                    "id": "taskOutline",
+                    "icon": "check.png",
+                    "id": "taskrunnervscode",
                     "name": "Task Runner"
                 }
             ]
         },
         "commands": [
             {
-                "command": "taskOutline.executeTask",
+                "command": "taskrunnervscode.executeTask",
                 "title": "Execute"
             },
             {
-                "command": "taskOutline.refresh",
+                "command": "taskrunnervscode.refresh",
                 "title": "Refresh",
                 "icon": "assets/refresh_icon.svg"
             }
@@ -50,7 +53,7 @@
         "menus": {
             "view/title": [
                 {
-                    "command": "taskOutline.refresh",
+                    "command": "taskrunnervscode.refresh",
                     "group": "navigation"
                 }
             ]
