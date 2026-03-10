@@ -28,8 +28,7 @@ jobs:
       - name: Package VSIX
         run: npx vsce package
 
-      - name: Upload VSIX artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: vsix-package
-          path: '*.vsix'
+      - name: Publish to Marketplace
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: npx vsce publish --pat $VSCE_PAT
