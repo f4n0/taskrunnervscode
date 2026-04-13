@@ -57,6 +57,16 @@
                     "group": "navigation"
                 }
             ]
+        },
+        "configuration": {
+            "title": "Task Runner",
+            "properties": {
+                "taskRunner.groupBySource": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Group tasks by their source (Workspace, User, package.json) in a tree view instead of a flat list."
+                }
+            }
         }
     },
     "scripts": {

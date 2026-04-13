@@ -19,13 +19,32 @@ export class TaskTreeDataProvider implements vscode.TreeDataProvider<TaskTreeIte
 	}
 
 	async getChildren(element?: TaskTreeItem): Promise<TaskTreeItem[]> {
+		const grouped = vscode.workspace.getConfiguration('taskRunner').get<boolean>('groupBySource', false);
+
 		if (!element) {
-			return this.getSourceNodes();
+			return grouped ? this.getSourceNodes() : this.getFlatList();
 		}
 		if (element.contextValue === 'source') {
 			return this.getTasksForSource(element.sourceKey!);
 		}
 		return [];
+	}
+
+	private async getFlatList(): Promise<TaskTreeItem[]> {
+		const tasks = await vscode.tasks.fetchTasks();
+		return tasks.map(task => {
+			const item = new TaskTreeItem(
+				task.name,
+				vscode.TreeItemCollapsibleState.None
+			);
+			item.contextValue = 'task';
+			item.command = {
+				command: 'taskrunnervscode.executeTask',
+				title: 'Execute',
+				arguments: [task]
+			};
+			return item;
+		});
 	}
 
 	private async getSourceNodes(): Promise<TaskTreeItem[]> {
